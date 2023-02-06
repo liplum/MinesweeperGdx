@@ -1,6 +1,7 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
+    kotlin("jvm")
     `java-library`
 }
 val appName: String by project

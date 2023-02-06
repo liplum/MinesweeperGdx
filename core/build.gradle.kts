@@ -1,4 +1,5 @@
 plugins {
+    kotlin("jvm")
     `java-library`
 }
 val appName: String by project
