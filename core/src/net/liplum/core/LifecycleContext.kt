@@ -4,6 +4,10 @@ data class UpdateContext(
     val delta: Second,
 )
 
+data class UpdateRenderContext(
+    val delta: Second,
+)
+
 data class RenderContext(
     val delta: Second,
 )

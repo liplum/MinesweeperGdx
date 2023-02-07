@@ -8,7 +8,7 @@ class Group {
     val render = GdxSet<IRender>()
     fun update(ctx: UpdateContext) {
         ObjectSet.ObjectSetIterator(update).forEach {
-            it.update(ctx)
+            it.updateLogic(ctx)
         }
     }
 

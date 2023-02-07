@@ -1,10 +1,20 @@
 package net.liplum.core
 
 interface IUpdate {
-    fun update(ctx: UpdateContext)
+    /**
+     * Update the state.
+     */
+    fun updateLogic(ctx: UpdateContext)
 }
 
 interface IRender {
+    /**
+     * Update the rendering process.
+     */
+    fun updateRender(ctx: UpdateRenderContext)
+    /**
+     * Render current state.
+     */
     fun render(ctx: RenderContext)
 }
 

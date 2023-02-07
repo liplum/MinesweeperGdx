@@ -5,20 +5,27 @@ import ktx.collections.GdxArray
 import java.lang.ref.WeakReference
 
 typealias Second = Float
+typealias TaskRef = WeakReference<() -> Unit>
 
 data class ScheduledTask(
-    val task: WeakReference<() -> Unit>,
+    val task: TaskRef,
     val deadline: Second,
 )
+
+interface ILoopedTask {
+    val task: TaskRef
+    val loopTime: Second
+    var timer: Second
+}
 
 open class Scheduler {
     companion object : Scheduler()
 
     var accumulator: Second = 0f
-    val tasks = GdxArray<ScheduledTask>()
+    val scheduledTasks = GdxArray<ScheduledTask>()
     fun update(delta: Second) {
         accumulator += delta
-        val it = Array.ArrayIterator(tasks)
+        val it = Array.ArrayIterator(scheduledTasks)
         while (it.hasNext()) {
             val entry = it.next()
             val task = entry.task.get()
@@ -28,6 +35,7 @@ open class Scheduler {
             }
             if (accumulator >= entry.deadline) {
                 task()
+                it.remove()
             }
         }
     }
@@ -37,6 +45,19 @@ open class Scheduler {
             task = WeakReference(task),
             deadline = accumulator + after,
         )
-        tasks.add(scheduled)
+        scheduledTasks.add(scheduled)
     }
 }
+
+
+data class LifecycleLoopedTask(
+    override val task: TaskRef,
+    override val loopTime: Second,
+    override var timer: Second = 0f,
+) : ILoopedTask
+
+data class CountedLoopedTask(
+    override val task: TaskRef,
+    override val loopTime: Second,
+    override var timer: Second = 0f,
+) : ILoopedTask

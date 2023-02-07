@@ -15,7 +15,11 @@ class Block : IContent {
 
         override lateinit var group: Group
         override var isAdded: Boolean = false
-        override fun update(ctx: UpdateContext) {
+        override fun updateLogic(ctx: UpdateContext) {
+
+        }
+
+        override fun updateRender(ctx: UpdateRenderContext) {
 
         }
 
