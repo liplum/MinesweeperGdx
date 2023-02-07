@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.ScreenUtils
+import net.liplum.core.RenderContext
 import net.liplum.core.UpdateContext
 
 class MinesweeperGame : ApplicationAdapter() {
@@ -20,6 +21,7 @@ class MinesweeperGame : ApplicationAdapter() {
         ScreenUtils.clear(0f, 0f, 0f, 1f)
         val deltaTime = Gdx.graphics.deltaTime
         val updateContext = UpdateContext(delta = deltaTime)
+        val renderContext = RenderContext(delta = deltaTime)
         batch.begin()
         batch.draw(img, 0f, 0f)
         batch.end()
