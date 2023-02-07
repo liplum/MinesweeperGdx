@@ -1,9 +1,9 @@
 package net.liplum.core
 
 interface IUpdate {
-    fun update()
+    fun update(ctx: UpdateContext)
 }
 
 interface IRender {
-    fun render()
+    fun render(ctx: RenderContext)
 }
