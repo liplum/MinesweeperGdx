@@ -8,7 +8,15 @@ import java.lang.ref.WeakReference
 typealias EventSubscriber<T> = (event: T) -> Unit
 private typealias EventSubscriberList = GdxArray<WeakReference<EventSubscriber<*>>>
 
-object Events {
+/**
+ * An event dispatcher with [WeakReference].
+ */
+open class Events {
+    /**
+     * Global event dispatcher.
+     */
+    companion object : Events()
+
     val type2Subscribers = GdxMap<Any, EventSubscriberList>()
     inline fun <reified T> on(noinline subscriber: EventSubscriber<T>) {
         var subscribers: EventSubscriberList? = type2Subscribers[T::class.java]
