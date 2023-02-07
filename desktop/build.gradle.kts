@@ -11,11 +11,11 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
-val assetsDir = File("../assets")
+val assetsDir = rootDir.resolve("assets")
 sourceSets {
     main {
         java.srcDirs("src")
-        resources.srcDirs("../assets")
+        resources.srcDirs(assetsDir)
     }
 }
 dependencies {
