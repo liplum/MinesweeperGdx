@@ -1,17 +1,56 @@
 package net.liplum.core
 
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 
-typealias TR = TextureRegion
 
-object Render {
-    lateinit var batch: SpriteBatch
-    fun draw(
-        tr: TR,
-        x: Float,
-        y: Float,
-    ) {
-        batch.draw(tr, x, y)
+val emptyTR = TextureRegion()
+
+sealed class Render {
+    companion object : Render() {
+        const val zScale = 1
     }
+
+    lateinit var batch: SpriteBatch
+    fun render(
+        tr: TextureRegion,
+        x: Float, y: Float,
+        scaleX: Float = 1f, scaleY: Float = 1f,
+        rotation: Float = 0f,
+        z: Float,
+    ) {
+        batch.render(
+            tr,
+            x = x, y = y,
+            scaleX = scaleX * z, scaleY = scaleY * z,
+            rotation = rotation,
+        )
+    }
+
+    fun begin() = batch.begin()
+
+    fun end() = batch.end()
+
+    fun dispose() = batch.dispose()
+
+}
+
+fun SpriteBatch.render(
+    region: TextureRegion,
+    x: Float, y: Float,
+    originX: Float = 0f, originY: Float = 0f,
+    width: Float = region.regionWidth.toFloat(),
+    height: Float = region.regionHeight.toFloat(),
+    scaleX: Float = 1f, scaleY: Float = 1f,
+    rotation: Float = 0f,
+) {
+    draw(
+        region,
+        x, y,
+        originX, originY,
+        width, height,
+        scaleX, scaleY,
+        rotation
+    )
 }

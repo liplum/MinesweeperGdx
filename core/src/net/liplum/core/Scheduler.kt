@@ -18,7 +18,7 @@ interface ILoopedTask {
     var timer: Second
 }
 
-open class Scheduler {
+sealed class Scheduler {
     companion object : Scheduler()
 
     var accumulator: Second = 0f

@@ -11,7 +11,7 @@ private typealias EventSubscriberList = GdxArray<WeakReference<EventSubscriber<*
 /**
  * An event dispatcher with [WeakReference].
  */
-open class Events {
+sealed class Events {
     /**
      * Global event dispatcher.
      */

@@ -2,15 +2,16 @@ package net.liplum
 
 import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.ScreenUtils
 import net.liplum.core.*
 
 class MinesweeperGame : ApplicationAdapter() {
-    lateinit var batch: SpriteBatch
 
     override fun create() {
-        batch = SpriteBatch()
+        Render.batch = SpriteBatch()
     }
 
     override fun render() {
@@ -18,13 +19,15 @@ class MinesweeperGame : ApplicationAdapter() {
         val deltaTime = Gdx.graphics.deltaTime
         val updateLogicCtx = UpdateLogicContext(delta = deltaTime)
         Var.scene.updateLogic(updateLogicCtx)
-        batch.begin()
+        Render.begin()
         val updateCtx = RenderContext(delta = deltaTime)
         Var.scene.render(updateCtx)
-        batch.end()
+        val tex = Texture("texture/dirt-base.png")
+        Render.render(TextureRegion(tex), x = 50f, y = 50f, z = Layer.tile)
+        Render.end()
     }
 
     override fun dispose() {
-        batch.dispose()
+        Render.dispose()
     }
 }

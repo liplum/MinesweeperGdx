@@ -1,14 +1,20 @@
 package net.liplum.entity
 
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.Vector2
 import ktx.math.component1
 import ktx.math.component2
 import ktx.math.vec2
 import net.liplum.core.*
 
-class Block : IContent {
-
+class Block(
+    override val contentID: String,
+) : IContent {
+    var backTR = emptyTR
+    var baseTR = emptyTR
     override fun loadAssets() {
+        backTR = loadTexture("back")
+        baseTR = loadTexture("base")
     }
 
     override fun init() {

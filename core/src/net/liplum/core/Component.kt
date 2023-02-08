@@ -14,6 +14,10 @@ interface IRender {
     fun render(ctx: RenderContext)
 }
 
+interface IMouseListener {
+
+}
+
 interface IEntity {
     var group: Group
     var isAdded: Boolean
