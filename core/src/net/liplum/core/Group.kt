@@ -6,7 +6,7 @@ import ktx.collections.GdxSet
 class Group {
     val update = GdxSet<IUpdate>()
     val render = GdxSet<IRender>()
-    fun update(ctx: UpdateLogicContext) {
+    fun updateLogic(ctx: UpdateLogicContext) {
         ObjectSet.ObjectSetIterator(update).forEach {
             it.updateLogic(ctx)
         }
@@ -15,12 +15,6 @@ class Group {
     fun render(ctx: RenderContext) {
         ObjectSet.ObjectSetIterator(render).forEach {
             it.render(ctx)
-        }
-    }
-
-    fun updateRender(ctx: UpdateRenderContext) {
-        ObjectSet.ObjectSetIterator(render).forEach {
-            it.updateRender(ctx)
         }
     }
 

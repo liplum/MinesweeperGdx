@@ -4,11 +4,8 @@ data class UpdateLogicContext(
     val delta: Second,
 )
 
-data class UpdateRenderContext(
-    val delta: Second,
-)
-
 data class RenderContext(
+    val delta: Second,
     /**
      * The alpha from parent.
      */

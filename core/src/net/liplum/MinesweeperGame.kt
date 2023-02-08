@@ -9,12 +9,6 @@ import net.liplum.core.*
 class MinesweeperGame : ApplicationAdapter() {
     lateinit var batch: SpriteBatch
 
-    companion object {
-        const val updateLogicInterval: Second = 1f / 20f
-    }
-
-    private var lastUpdateRenderTime: Second = 0f
-    private var updateLogicDeltaAccumulator: Second = 0f
     override fun create() {
         batch = SpriteBatch()
     }
@@ -22,19 +16,11 @@ class MinesweeperGame : ApplicationAdapter() {
     override fun render() {
         ScreenUtils.clear(0f, 0f, 0f, 1f)
         val deltaTime = Gdx.graphics.deltaTime
-        lastUpdateRenderTime += deltaTime
-        updateLogicDeltaAccumulator += deltaTime
-        if (updateLogicDeltaAccumulator >= updateLogicInterval) {
-            val updateLogicCtx = UpdateLogicContext(delta = updateLogicDeltaAccumulator)
-            Var.scene.updateLogic(updateLogicCtx)
-            updateLogicDeltaAccumulator = 0f
-        }
-        val updateRenderCtx = UpdateRenderContext(delta = deltaTime)
-
-        Var.scene.updateRender(updateRenderCtx)
-        val renderCtx = RenderContext()
+        val updateLogicCtx = UpdateLogicContext(delta = deltaTime)
+        Var.scene.updateLogic(updateLogicCtx)
         batch.begin()
-        Var.scene.render(renderCtx)
+        val updateCtx = RenderContext(delta = deltaTime)
+        Var.scene.render(updateCtx)
         batch.end()
     }
 

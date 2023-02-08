@@ -6,10 +6,6 @@ interface IScene {
      */
     fun updateLogic(ctx: UpdateLogicContext)
     /**
-     * Update the rendering process.
-     */
-    fun updateRender(ctx: UpdateRenderContext)
-    /**
      * Render current state.
      */
     fun render(ctx: RenderContext)
@@ -17,9 +13,6 @@ interface IScene {
     object Empty : IScene {
         override fun updateLogic(ctx: UpdateLogicContext) {
 
-        }
-
-        override fun updateRender(ctx: UpdateRenderContext) {
         }
 
         override fun render(ctx: RenderContext) {
@@ -48,13 +41,6 @@ class SceneManger(
         curScene.updateLogic(ctx)
     }
 
-    fun updateRender(ctx: UpdateRenderContext) {
-/*        if (transitionState) {
-
-        }*/
-        transitingTime += ctx.delta
-        curScene.updateRender(ctx)
-    }
 
     fun render(ctx: RenderContext) {
         curScene.render(ctx)

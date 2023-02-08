@@ -12,9 +12,6 @@ class GameScene : IScene {
 
     }
 
-    override fun updateRender(ctx: UpdateRenderContext) {
-    }
-
     override fun render(ctx: RenderContext) {
 
     }

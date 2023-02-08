@@ -9,10 +9,6 @@ interface IUpdate {
 
 interface IRender {
     /**
-     * Update the rendering process.
-     */
-    fun updateRender(ctx: UpdateRenderContext)
-    /**
      * Render current state.
      */
     fun render(ctx: RenderContext)

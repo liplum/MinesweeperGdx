@@ -21,22 +21,15 @@ class Block : IContent {
         override var isAdded: Boolean = false
         var pos = vec2(0f, 0f)
         override fun updateLogic(ctx: UpdateLogicContext) {
+
         }
 
         fun onMouseClick() {
             pos.add(0f, 10f)
         }
 
-        var posTween = Vector2Tween(begin = pos, duration = 1f)
-
-        override fun updateRender(ctx: UpdateRenderContext) {
-            posTween = posTween.conformTo(pos, pos)
-            posTween.update(ctx.delta)
-        }
-
         override fun render(ctx: RenderContext) {
-            val curPos = posTween.value
-            val (x, y) = curPos
+
         }
     }
 }
