@@ -28,28 +28,30 @@ interface IScene {
     }
 }
 
+enum class TransitionState {
+    Last2Blank, Blank2Cur
+}
+
 class SceneManger(
     initialScene: IScene = IScene.Empty,
     val transitionTime: Second = 2f,
 ) {
     var lastScene: IScene = IScene.Empty
     val curScene = initialScene
-    private var last2BlankTransitingTime: Second = 0f
+    var transitionState = TransitionState.Last2Blank
+    private var transitingTime: Second = 0f
         set(value) {
             field = value.coerceIn(0f, transitionTime)
         }
-    private var blank2CurTransitingTime: Second = 0f
-        set(value) {
-            field = value.coerceIn(0f, transitionTime)
-        }
+
     fun updateLogic(ctx: UpdateLogicContext) {
         curScene.updateLogic(ctx)
     }
 
     fun updateRender(ctx: UpdateRenderContext) {
-        if(last2BlankTransitingTime){
+/*        if (transitionState) {
 
-        }
+        }*/
         transitingTime += ctx.delta
         curScene.updateRender(ctx)
     }
