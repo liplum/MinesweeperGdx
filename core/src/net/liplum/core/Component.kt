@@ -4,7 +4,7 @@ interface IUpdate {
     /**
      * Update the state.
      */
-    fun updateLogic(ctx: UpdateContext)
+    fun updateLogic(ctx: UpdateLogicContext)
 }
 
 interface IRender {
