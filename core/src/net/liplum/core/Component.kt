@@ -1,5 +1,8 @@
 package net.liplum.core
 
+import com.badlogic.gdx.math.Rectangle
+import com.badlogic.gdx.math.Vector2
+
 interface IUpdate {
     /**
      * Update the state.
@@ -12,6 +15,15 @@ interface IRender {
      * Render current state.
      */
     fun render(ctx: RenderContext)
+}
+
+interface IRectBody {
+    val hitBox: Rectangle
+}
+
+interface IPositioned {
+    var x: Float
+    var y: Float
 }
 
 interface IMouseListener {

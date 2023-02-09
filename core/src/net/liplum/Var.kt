@@ -1,8 +1,7 @@
 package net.liplum
 
-import net.liplum.core.IScene
-import net.liplum.core.Second
+import net.liplum.core.SceneManger
 
 object Var {
-    var scene = IScene.Empty
+    var sceneManager = SceneManger()
 }

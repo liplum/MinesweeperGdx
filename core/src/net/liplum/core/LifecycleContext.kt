@@ -5,7 +5,7 @@ data class UpdateLogicContext(
 )
 
 data class RenderContext(
-    val delta: Second,
+    private val delta: Second,
     /**
      * The alpha from parent.
      */

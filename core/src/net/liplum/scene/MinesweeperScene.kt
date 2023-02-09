@@ -5,7 +5,7 @@ import net.liplum.core.*
 
 class MinesweeperScene : IScene {
     lateinit var group: Group
-    fun init() {
+    override fun init() {
         group = Group()
     }
 

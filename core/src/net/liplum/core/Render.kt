@@ -1,8 +1,10 @@
 package net.liplum.core
 
-import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.Camera
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 
 
 val emptyTR = TextureRegion()
@@ -13,6 +15,8 @@ sealed class Render {
     }
 
     lateinit var batch: SpriteBatch
+    lateinit var shape: ShapeRenderer
+    lateinit var camera: Camera
     fun render(
         tr: TextureRegion,
         x: Float, y: Float,
@@ -28,7 +32,10 @@ sealed class Render {
         )
     }
 
-    fun begin() = batch.begin()
+    fun begin() {
+        batch.begin()
+        batch.projectionMatrix = camera.combined
+    }
 
     fun end() = batch.end()
 

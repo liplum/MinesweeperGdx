@@ -12,6 +12,7 @@ class Block(
 ) : IContent {
     var backTR = emptyTR
     var baseTR = emptyTR
+    var size = 32
     fun new(): BlockEntity = BlockEntity()
     override fun loadAssets() {
         backTR = loadTexture("back")
