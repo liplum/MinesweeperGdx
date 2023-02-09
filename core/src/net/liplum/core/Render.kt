@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.utils.viewport.Viewport
 
 
 val emptyTR = TextureRegion()
@@ -17,6 +18,7 @@ sealed class Render {
     lateinit var batch: SpriteBatch
     lateinit var shape: ShapeRenderer
     lateinit var camera: Camera
+    lateinit var viewport: Viewport
     fun render(
         tr: TextureRegion,
         x: Float, y: Float,

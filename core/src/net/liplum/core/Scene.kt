@@ -29,7 +29,7 @@ enum class TransitionState {
 
 class SceneManger(
     initialScene: IScene = IScene.Empty,
-    val transitionDuration: Second = 1f,
+    val transitionDuration: Second = 0.5f,
 ) : IUpdate, IRender {
     var lastScene: IScene = IScene.Empty
         private set
@@ -63,6 +63,7 @@ class SceneManger(
                     if (transitingTime >= transitionDuration) {
                         lastScene.dispose()
                         transitionState = Blank2Cur
+                        transitingTime = 0f
                     }
                 } else {
                     lastScene.updateLogic(ctx)

@@ -8,16 +8,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.ScreenUtils
+import com.badlogic.gdx.utils.viewport.FitViewport
 import net.liplum.core.*
 import net.liplum.registry.Blocks
 import net.liplum.scene.LoadingScene
 
-class MinesweeperGame : ApplicationAdapter() {
 
+class MinesweeperGame : ApplicationAdapter() {
+    lateinit var tex: Texture
     override fun create() {
         Render.batch = SpriteBatch()
         Render.shape = ShapeRenderer()
         Render.camera = OrthographicCamera()
+        Render.viewport = FitViewport(
+            Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat(),
+            Render.camera,
+        )
+        tex = Texture("texture/dirt-base.png")
         Blocks.registerAll()
         Var.sceneManager.goto(LoadingScene())
     }
@@ -27,12 +34,17 @@ class MinesweeperGame : ApplicationAdapter() {
         val deltaTime = Gdx.graphics.deltaTime
         val updateLogicCtx = UpdateLogicContext(delta = deltaTime)
         Var.sceneManager.updateLogic(updateLogicCtx)
+        Scheduler.update(deltaTime)
+        Render.camera.update()
         Render.begin()
         val updateCtx = RenderContext(delta = deltaTime)
         Var.sceneManager.render(updateCtx)
-        val tex = Texture("texture/dirt-base.png")
         Render.render(TextureRegion(tex), x = 50f, y = 50f, z = Layer.tile)
         Render.end()
+    }
+
+    override fun resize(width: Int, height: Int) {
+        Render.viewport.update(width, height)
     }
 
     override fun dispose() {
